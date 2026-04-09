@@ -6,6 +6,7 @@ import { ActivityIndicator } from 'react-native-paper'
 import DetailHero from '@/components/pokemon/DetailHero'
 import BreedingSection from '@/components/pokemon/BreedingSection'
 import StatsSection from '@/components/pokemon/StatsSection'
+import MovesSection from '@/components/pokemon/MovesSection'
 
 const PokemonDetail = () => {
     const {name}=useLocalSearchParams<{name:string}>()
@@ -18,6 +19,7 @@ const PokemonDetail = () => {
 <View className='px-6 pt-20 pb-10'>
     <BreedingSection height={data.height} weight={data.weight}/>
  <StatsSection stats={data.stats}/>
+ <MovesSection moves={data.moves} />
 </View>
      </ScrollView>
     </View>
