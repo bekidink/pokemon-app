@@ -7,11 +7,14 @@ import DetailHero from '@/components/pokemon/DetailHero'
 import BreedingSection from '@/components/pokemon/BreedingSection'
 import StatsSection from '@/components/pokemon/StatsSection'
 import MovesSection from '@/components/pokemon/MovesSection'
+import DetailSkeleton from '@/components/ui/DetailSkeleton'
+import { ErrorState } from '@/components/ui/ErrorState'
 
 const PokemonDetail = () => {
     const {name}=useLocalSearchParams<{name:string}>()
-    const {data,isLoading}=useDetail(name)
-    if(isLoading || !data) return <ActivityIndicator/>
+    const {data,isLoading,error,refetch,isRefetching}=useDetail(name)
+    if(isLoading ) return <DetailSkeleton/>
+    if(error) return <ErrorState onRetry={refetch}/>
   return (
     <View className='flex-1 bg-white'>
       <ScrollView bounces={false}>
