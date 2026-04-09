@@ -6,14 +6,15 @@ import { pokemonService } from '@/services/pokemon'
 import { useList } from '@/hooks/useList'
 import { ActivityIndicator } from 'react-native-paper'
 import PokemonCard from '@/components/pokemon/PokemonCard'
+import { HomeSkeleton } from '@/components/ui/SkeletonLoader'
+import { ErrorState } from '@/components/ui/ErrorState'
 
 const Home = () => {
     const [searchQuery,setSearchQuery]=useState("")
     const {data,isLoading,error,refetch,isRefetching}=useList()
-    if(isLoading) {
-      return  <ActivityIndicator/>
-    }
-    if(!data) return null
+    if(isLoading) return <HomeSkeleton/>
+    if(error) return <ErrorState onRetry={refetch}/>
+    
 
  const filteredResults=data?.filter(p=>p.name.includes(searchQuery.toLocaleLowerCase()))??[]
     return (
