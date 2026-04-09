@@ -14,14 +14,14 @@ const Home = () => {
       return  <ActivityIndicator/>
     }
     if(!data) return null
-console.log("console",data)
-// const filteredResults=data?.filter(p=>p.name.includes(searchQuery.toLocaleLowerCase()))??[]
+
+ const filteredResults=data?.filter(p=>p.name.includes(searchQuery.toLocaleLowerCase()))??[]
     return (
     <View className='flex-1 '>
       <HomeHeader/>
       <SearchInput value={searchQuery} onChange={setSearchQuery}/>
       <View className='flex-1 bg-white rounded-t-[40px] mt-6 shadow-2xl'>
-<FlatList data={data} numColumns={2} keyExtractor={(item)=>item.name} renderItem={({item})=><PokemonCard pokemon={item} />} onRefresh={refetch} refreshing={isRefetching} contentContainerStyle={{
+<FlatList data={filteredResults} numColumns={2} keyExtractor={(item)=>item.name} renderItem={({item})=><PokemonCard pokemon={item} />} onRefresh={refetch} refreshing={isRefetching} contentContainerStyle={{
     paddingHorizontal:12,paddingTop:24,paddingBottom:40
 }} showsVerticalScrollIndicator={false} ListEmptyComponent={
     <Text>{searchQuery?`No Pokemon found for ${searchQuery}`:"Loading your collection"}</Text>
