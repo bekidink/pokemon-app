@@ -2,8 +2,8 @@ import { apiClient } from "./apiClient"
 
 export const pokemonService={
     async getList():Promise<any>{
-        const {data}=await apiClient.get('/pokemon')
-        return data
+        const {data}=await apiClient.get(`/pokemon?limit=151&offset=0`)
+        return data.results
 
     },
 
