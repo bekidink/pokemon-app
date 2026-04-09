@@ -1,12 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import HomeHeader from '@/components/pokemon/HomeHeader'
 
-const index = () => {
+const Home = () => {
   return (
-    <View>
-      <Text>index</Text>
+    <View className='flex-1 '>
+      <HomeHeader/>
     </View>
   )
 }
 
-export default index
+export default Home
