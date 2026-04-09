@@ -1,50 +1,84 @@
-# Welcome to your Expo app 👋
+Pokémon Expo App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A high-performance, mobile-first Pokédex built with React Native, Expo SDK 54, and TanStack Query. This project was developed as a technical assessment to demonstrate modern mobile architecture, clean UI composition, and resilient data-fetching strategies.
 
-## Get started
+Tech Stack
 
-1. Install dependencies
+    Framework: Expo (SDK 54)
 
-   ```bash
-   npm install
-   ```
+    Navigation: Expo Router (Type-safe file-based routing)
 
-2. Start the app
+    State & Data: TanStack Query v5 (Server state management)
 
-   ```bash
-   npx expo start
-   ```
+    Networking: Axios (Centralized API client)
 
-In the output, you'll find options to open the app in a
+    Styling: NativeWind (Tailwind CSS) & React Native Paper
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+    Testing: Jest & React Native Testing Library
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Architectural Highlights
+ Modular Component Design
 
-## Get a fresh project
+The application follows the Single Responsibility Principle. I decomposed the complex Detail view into atomic sub-components (DetailHero, BreedingSection, StatsSection, MovesSection). This modularity ensures:
 
-When you're ready, run:
+    Scalability: Each section can be updated or tested in isolation.
 
-```bash
-npm run reset-project
-```
+    Readability: The "Controller" files remain slim and focused on logic.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+ Resilient Data Fetching
 
-## Learn more
+Using TanStack Query, I implemented a robust caching layer:
 
-To learn more about developing your project with Expo, look at the following resources:
+    Optimistic UI: Data is cached locally to provide instant navigation back to previously viewed Pokémon.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+    Error Handling: Integrated a custom ErrorState with retry logic to handle API timeouts gracefully.
 
-## Join the community
+    Transformation Layer: API data is sanitized and formatted (e.g., metric conversions, string capitalization) before reaching the UI.
 
-Join our community of developers creating universal apps.
+ Design & UX Fidelity
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+    Dynamic Theming: UI accents and background colors automatically adapt based on the Pokémon's primary type using a custom design token system.
+
+    Layout Stability: Implemented Skeleton Loaders for both the Grid and Detail views to eliminate layout shift (CLS) and improve perceived performance.
+
+    Contextual Interaction: A Modal-based moves list allows users to view complete move sets without losing their place in the detail view.
+
+Getting Started
+Prerequisites
+
+    Node.js (v18 or newer)
+
+    npm or yarn
+
+    Expo Go app on a physical device or an Android/iOS emulator
+
+Installation & Setup
+
+1.Clone the repository:
+git clone https://github.com/bekidink/pokemon-expo-app.git
+cd pokemon-expo-app
+
+2.Install dependencies:
+npm install --legacy-peer-deps
+
+3.Start the development server:
+npm start
+
+Testing
+
+The test suite is configured with jest-expo to provide an environment that accurately mocks the React Native runtime.
+
+
+npm test
+npm run test:watch
+
+Directory Structure
+├── app/               # Expo Router pages (Navigation logic)
+├── components/        
+│   ├── pokemon/       # Domain-specific components
+│   └── ui/            # Reusable UI (Skeletons, ErrorStates, Inputs)
+├── constants/         # Design tokens and TYPE_COLORS
+├── hooks/             # Custom TanStack Query hooks
+├── services/          # API services and Axios configuration
+
+
