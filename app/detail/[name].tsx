@@ -4,6 +4,7 @@ import { useLocalSearchParams } from 'expo-router'
 import { useDetail } from '@/hooks/useDetail'
 import { ActivityIndicator } from 'react-native-paper'
 import DetailHero from '@/components/pokemon/DetailHero'
+import BreedingSection from '@/components/pokemon/BreedingSection'
 
 const PokemonDetail = () => {
     const {name}=useLocalSearchParams<{name:string}>()
@@ -13,6 +14,7 @@ const PokemonDetail = () => {
     <View className='flex-1 bg-white'>
       <ScrollView bounces={false}>
 <DetailHero pokemon={data}/>
+<BreedingSection height={data.height} weight={data.weight}/>
       </ScrollView>
     </View>
   )
