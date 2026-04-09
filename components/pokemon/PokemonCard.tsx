@@ -15,7 +15,7 @@ const imageUrl=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites
   accessibilityLabel={`View details for ${pokemon.name}`}
   className='flex-1 m-2'
   >
-<View className='bg-slate-50 rounded-3xl p-5 items-center border border-slate-300'>
+<View className='bg-white rounded-3xl p-5 items-center border border-slate-100 shadow-2xl'>
   <Text className='absolute left-4 top-3 text-slate-300 font-black italic'>{displayId}</Text>
   <Image source={{uri:imageUrl}} className='w-24 h-24 my-3' resizeMode='contain'/>
 <Text className='text-sm font-bold uppercase tracking-tight'>{pokemon.name}</Text>

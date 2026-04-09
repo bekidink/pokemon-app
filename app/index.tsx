@@ -20,7 +20,7 @@ const Home = () => {
     <View className='flex-1 '>
       <HomeHeader/>
       <SearchInput value={searchQuery} onChange={setSearchQuery}/>
-      <View className='flex-1 bg-white rounded-t-[40px] mt-6 shadow-2xl'>
+      <View className='flex-1 bg-white rounded-t-[40px] mt-3 shadow-2xl'>
 <FlatList data={filteredResults} numColumns={2} keyExtractor={(item)=>item.name} renderItem={({item})=><PokemonCard pokemon={item} />} onRefresh={refetch} refreshing={isRefetching} contentContainerStyle={{
     paddingHorizontal:12,paddingTop:24,paddingBottom:40
 }} showsVerticalScrollIndicator={false} ListEmptyComponent={
